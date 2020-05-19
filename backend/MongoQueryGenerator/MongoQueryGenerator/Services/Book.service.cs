@@ -18,8 +18,8 @@ namespace MongoQueryGenerator.Services
 
             _books = database.GetCollection<BookSchema>(settings.BooksCollectionName);
         }
-
         public List<BookSchema> Get() => _books.Find(book => true).ToList();
+        public Object GetQuery() => _books.Find(book => true).ToString();
         public BookSchema Get(string id) => _books.Find(book => book.Id == id).FirstOrDefault();
         public BookSchema Create(BookSchema book)
         {

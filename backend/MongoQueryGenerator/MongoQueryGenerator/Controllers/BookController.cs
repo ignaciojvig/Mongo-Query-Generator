@@ -21,7 +21,17 @@ namespace MongoQueryGenerator.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<BookSchema>> Get() => _bookService.Get();
+        public ActionResult<List<BookSchema>> Get()
+        {
+            var bookList = _bookService.Get();
+            return bookList;
+        }
+
+        [HttpGet("query")]
+        public ActionResult<Object> GetQuery()
+        {
+            return _bookService.GetQuery();
+        }
 
         [HttpGet("{id}", Name = "GetBook")]
         public ActionResult<BookSchema> Get(string id)
