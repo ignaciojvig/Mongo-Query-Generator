@@ -9,26 +9,19 @@ using MongoQueryGenerator.Services;
 
 namespace MongoQueryGenerator.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/querygen/")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class QueryGeneratorController : ControllerBase
     {
-        private readonly BookService _bookService;
+        private readonly QueryGeneratorService _bookService;
 
-        public BookController(BookService bookService)
+        public QueryGeneratorController(QueryGeneratorService bookService)
         {
             _bookService = bookService;
         }
 
         [HttpGet]
-        public ActionResult<List<BookSchema>> Get()
-        {
-            var bookList = _bookService.Get();
-            return bookList;
-        }
-
-        [HttpGet("query")]
-        public ActionResult<Object> GetQuery()
+        public ActionResult<object> Get()
         {
             return _bookService.GetQuery();
         }

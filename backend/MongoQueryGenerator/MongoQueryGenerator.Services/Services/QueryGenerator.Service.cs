@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace MongoQueryGenerator.Services
 {
-    public class BookService
+    public class QueryGeneratorService
     {
         private readonly IMongoCollection<BookSchema> _books;
 
-        public BookService(IBookstoreDatabaseSettings settings)
+        public QueryGeneratorService(IMongoSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _books = database.GetCollection<BookSchema>(settings.BooksCollectionName);
+            _books = database.GetCollection<BookSchema>(settings.CollectionName);
         }
         public List<BookSchema> Get() => _books.Find(book => true).ToList();
         public Object GetQuery() => _books.Find(book => true).ToString();
