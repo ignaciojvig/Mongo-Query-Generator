@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MongoQueryGenerator
+namespace MongoQueryGenerator.Infra.Data.Mongo
 {
     public class MongoSettings : IMongoSettings
     {

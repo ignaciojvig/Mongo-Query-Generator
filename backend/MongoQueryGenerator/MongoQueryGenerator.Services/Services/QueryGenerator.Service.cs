@@ -1,4 +1,6 @@
 ﻿using MongoDB.Driver;
+using MongoQueryGenerator.Domain.Interfaces;
+using MongoQueryGenerator.Infra.Data.Mongo;
 using MongoQueryGenerator.Schema;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MongoQueryGenerator.Services
 {
-    public class QueryGeneratorService
+    public class QueryGeneratorService : IQueryGeneratorService
     {
         private readonly IMongoCollection<BookSchema> _books;
 

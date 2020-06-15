@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MongoQueryGenerator.Data\MongoQueryGenerator.Data.csproj" />
+    <ProjectReference Include="..\MongoQueryGenerator.Data\MongoQueryGenerator.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

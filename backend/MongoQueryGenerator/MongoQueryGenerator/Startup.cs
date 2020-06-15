@@ -11,7 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MongoQueryGenerator.API.Configurations;
+using MongoQueryGenerator.Infra.Data.Mongo;
 using MongoQueryGenerator.Services;
+using MongoQueryGenerator.WebAPI.Configurations;
 
 namespace MongoQueryGenerator
 {
@@ -26,15 +29,17 @@ namespace MongoQueryGenerator
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MongoSettings>(
-                Configuration.GetSection(nameof(MongoSettings)));
+            // Mongo Setup
+            services.AddMongoSetup(Configuration);
 
-            services.AddSingleton<IMongoSettings>(sp =>
-                sp.GetRequiredService<IOptions<MongoSettings>>().Value);
+            // .Net Native DI Abstraction 
+            services.AddDependencyInjectionSetup();
 
-            services.AddSingleton<QueryGeneratorService>();
-
+            // WebAPI Config
             services.AddControllers();
+
+            // Swagger Config
+            services.AddSwaggerSetup();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -54,6 +59,8 @@ namespace MongoQueryGenerator
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwaggerSetup();
         }
     }
 }

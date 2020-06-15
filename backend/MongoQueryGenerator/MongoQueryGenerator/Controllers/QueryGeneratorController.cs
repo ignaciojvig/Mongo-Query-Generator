@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoQueryGenerator.Domain.Interfaces;
 using MongoQueryGenerator.Schema;
 using MongoQueryGenerator.Services;
 
@@ -13,9 +14,9 @@ namespace MongoQueryGenerator.Controllers
     [ApiController]
     public class QueryGeneratorController : ControllerBase
     {
-        private readonly QueryGeneratorService _bookService;
+        private readonly IQueryGeneratorService _bookService;
 
-        public QueryGeneratorController(QueryGeneratorService bookService)
+        public QueryGeneratorController(IQueryGeneratorService bookService)
         {
             _bookService = bookService;
         }
